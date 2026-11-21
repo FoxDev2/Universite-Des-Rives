@@ -9,6 +9,7 @@
       "Courier New", monospace;
     --color-red-100: oklch(93.6% 0.032 17.717);
     --color-red-400: oklch(70.4% 0.191 22.216);
+    --color-red-500: oklch(63.7% 0.237 25.331);
     --color-red-600: oklch(57.7% 0.245 27.325);
     --color-red-800: oklch(44.4% 0.177 26.899);
     --color-orange-50: oklch(98% 0.016 73.684);
@@ -257,8 +258,11 @@
   .mx-auto {
     margin-inline: auto;
   }
-  .my-4 {
-    margin-block: calc(var(--spacing) * 4);
+  .my-2 {
+    margin-block: calc(var(--spacing) * 2);
+  }
+  .my-3 {
+    margin-block: calc(var(--spacing) * 3);
   }
   .mt-1 {
     margin-top: var(--spacing);
@@ -466,9 +470,6 @@
   .border-orange-600 {
     border-color: var(--color-orange-600);
   }
-  .border-red-400 {
-    border-color: var(--color-red-400);
-  }
   .border-slate-200 {
     border-color: var(--color-slate-200);
   }
@@ -495,12 +496,6 @@
   }
   .bg-orange-700 {
     background-color: var(--color-orange-700);
-  }
-  .bg-paper {
-    background-color: var(--color-paper);
-  }
-  .bg-red-100 {
-    background-color: var(--color-red-100);
   }
   .bg-stone-50 {
     background-color: var(--color-stone-50);
@@ -567,9 +562,6 @@
   }
   .pl-4 {
     padding-left: calc(var(--spacing) * 4);
-  }
-  .text-center {
-    text-align: center;
   }
   .font-sans {
     font-family: var(--font-sans);
@@ -725,6 +717,9 @@
   .shadow-lg {
     --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .outline-red-500 {
+    outline-color: var(--color-red-500);
   }
   .transition-colors {
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;

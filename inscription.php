@@ -2,18 +2,16 @@
 session_start();
 include 'includes/head.php';
 include 'includes/navbar.php';
-include 'includes/sub-nav-inscription.php'
+include 'includes/sub-nav-inscription.php';
+
+// echo '<pre>';
+// var_dump($_SESSION['errors'] ?? []);
+// echo '</pre>';
 ?>
 
 <main class="mx-auto max-w-4xl px-4 py-8">
 
-  <?php
-  if (isset($_SESSION['error'])) : ?>
-    <div class="mx-auto max-w-4xl px-4 py-4 bg-red-100 text-red-800 border border-red-400 rounded-md my-4">
-      <p><?php echo $_SESSION['error']; ?></p>
-    </div>
-  <?php endif; ?>
-  <?php unset($_SESSION['error']); ?>
+
 
   <form
     action="config/traitement.php"
@@ -30,13 +28,21 @@ include 'includes/sub-nav-inscription.php'
       <div class="grid gap-4 sm:grid-cols-6">
         <div class="sm:col-span-2">
           <label class="label" for="civilite">Civilité *</label>
-          <select id="civilite" name="civilite" class="champ" required>
+          <select id="civilite" name="civilite" class="champ">
             <option value="">Choisir…</option>
             <option value="M">Monsieur</option>
             <option value="F">Madame</option>
             <option value="A">Autre</option>
           </select>
+          <?php
+          if (isset($_SESSION['errors']['civilite'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['civilite']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['civilite']); ?>
         </div>
+
+
+
         <div class="sm:col-span-2">
           <label class="label" for="nom">Nom *</label>
           <input
@@ -46,6 +52,13 @@ include 'includes/sub-nav-inscription.php'
             maxlength="60"
             class="champ"
             required />
+
+          <?php
+          if (isset($_SESSION['errors']['nom'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['nom']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['nom']); ?>
+
         </div>
         <div class="sm:col-span-2">
           <label class="label" for="prenom">Prénom *</label>
@@ -56,6 +69,13 @@ include 'includes/sub-nav-inscription.php'
             maxlength="60"
             class="champ"
             required />
+
+          <?php
+          if (isset($_SESSION['errors']['prenom'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['prenom']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['prenom']); ?>
+
         </div>
         <div class="sm:col-span-2">
           <label class="label" for="date_naissance">Date de naissance *</label>
@@ -65,6 +85,14 @@ include 'includes/sub-nav-inscription.php'
             type="date"
             class="champ"
             required />
+
+          <?php
+          if (isset($_SESSION['errors']['date_naissance'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['date_naissance']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['date_naissance']); ?>
+
+
         </div>
         <div class="sm:col-span-2">
           <label class="label" for="lieu_naissance">Lieu de naissance *</label>
@@ -75,6 +103,13 @@ include 'includes/sub-nav-inscription.php'
             maxlength="80"
             class="champ"
             required />
+
+          <?php
+          if (isset($_SESSION['errors']['lieu_naissance'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['lieu_naissance']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['lieu_naissance']); ?>
+
         </div>
         <div class="sm:col-span-2">
           <label class="label" for="nationalite">Nationalité *</label>
@@ -85,6 +120,14 @@ include 'includes/sub-nav-inscription.php'
             maxlength="60"
             class="champ"
             required />
+
+          <?php
+          if (isset($_SESSION['errors']['nationalite'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['nationalite']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['nationalite']); ?>
+
+
         </div>
         <div class="sm:col-span-3">
           <label class="label" for="situation_familiale">Situation familiale</label>
@@ -96,6 +139,14 @@ include 'includes/sub-nav-inscription.php'
             <option value="marie">Marié(e)</option>
             <option value="autre">Autre</option>
           </select>
+
+          <?php
+          if (isset($_SESSION['errors']['situation_familiale'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['situation_familiale']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['situation_familiale']); ?>
+
+
         </div>
         <div class="sm:col-span-3">
           <label class="label" for="piece_identite">Numéro de pièce d’identité *</label>
@@ -106,6 +157,14 @@ include 'includes/sub-nav-inscription.php'
             maxlength="30"
             class="champ"
             required />
+
+          <?php
+          if (isset($_SESSION['errors']['piece_identite'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['piece_identite']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['piece_identite']); ?>
+
+
         </div>
       </div>
     </section>
@@ -127,6 +186,14 @@ include 'includes/sub-nav-inscription.php'
             maxlength="120"
             class="champ"
             required />
+
+          <?php
+          if (isset($_SESSION['errors']['email'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['email']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['email']); ?>
+
+
         </div>
         <div class="sm:col-span-3">
           <label class="label" for="telephone">Téléphone *</label>
@@ -138,6 +205,14 @@ include 'includes/sub-nav-inscription.php'
             placeholder="90000000"
             class="champ"
             required />
+
+          <?php
+          if (isset($_SESSION['errors']['telephone'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['telephone']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['telephone']); ?>
+
+
         </div>
         <div class="sm:col-span-6">
           <label class="label" for="adresse">Adresse *</label>
@@ -148,6 +223,14 @@ include 'includes/sub-nav-inscription.php'
             maxlength="150"
             class="champ"
             required />
+
+          <?php
+          if (isset($_SESSION['errors']['adresse'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['adresse']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['adresse']); ?>
+
+
         </div>
         <div class="sm:col-span-2">
           <label class="label" for="code_postal">Code postal</label>
@@ -157,6 +240,14 @@ include 'includes/sub-nav-inscription.php'
             type="text"
             maxlength="10"
             class="champ" />
+
+          <?php
+          if (isset($_SESSION['errors']['code_postal'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['code_postal']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['code_postal']); ?>
+
+
         </div>
         <div class="sm:col-span-2">
           <label class="label" for="ville">Ville *</label>
@@ -167,6 +258,14 @@ include 'includes/sub-nav-inscription.php'
             maxlength="80"
             class="champ"
             required />
+
+          <?php
+          if (isset($_SESSION['errors']['ville'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['ville']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['ville']); ?>
+
+
         </div>
         <div class="sm:col-span-2">
           <label class="label" for="pays">Pays *</label>
@@ -177,6 +276,14 @@ include 'includes/sub-nav-inscription.php'
             maxlength="60"
             class="champ"
             required />
+
+          <?php
+          if (isset($_SESSION['errors']['pays'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['pays']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['pays']); ?>
+
+
         </div>
       </div>
     </section>
@@ -200,6 +307,14 @@ include 'includes/sub-nav-inscription.php'
             <option value="technologique">Technologique</option>
             <option value="autre">Autre</option>
           </select>
+
+          <?php
+          if (isset($_SESSION['errors']['type_bac'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['type_bac']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['type_bac']); ?>
+
+
         </div>
         <div class="sm:col-span-3">
           <label class="label" for="annee_bac">Année d’obtention *</label>
@@ -212,6 +327,14 @@ include 'includes/sub-nav-inscription.php'
             maxlength="4"
             class="champ"
             required />
+
+          <?php
+          if (isset($_SESSION['errors']['annee_bac'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['annee_bac']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['annee_bac']); ?>
+
+
         </div>
         <div class="sm:col-span-4">
           <label class="label" for="etablissement_precedent">Dernier établissement fréquenté *</label>
@@ -222,6 +345,14 @@ include 'includes/sub-nav-inscription.php'
             maxlength="120"
             class="champ"
             required />
+
+          <?php
+          if (isset($_SESSION['errors']['etablissement_precedent'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['etablissement_precedent']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['etablissement_precedent']); ?>
+
+
         </div>
         <div class="sm:col-span-2">
           <label class="label" for="moyenne">Moyenne générale (/20)</label>
@@ -233,6 +364,13 @@ include 'includes/sub-nav-inscription.php'
             max="20"
             step="0.01"
             class="champ" />
+
+          <?php
+          if (isset($_SESSION['errors']['moyenne'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['moyenne']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['moyenne']); ?>
+
         </div>
         <div class="sm:col-span-6">
           <label class="label" for="mention">Mention</label>
@@ -243,6 +381,14 @@ include 'includes/sub-nav-inscription.php'
             <option value="bien">Bien</option>
             <option value="tres_bien">Très bien</option>
           </select>
+
+          <?php
+          if (isset($_SESSION['errors']['mention'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['mention']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['mention']); ?>
+
+
         </div>
       </div>
     </section>
@@ -265,6 +411,14 @@ include 'includes/sub-nav-inscription.php'
             <option value="4">Lettres et sciences humaines</option>
             <option value="5">Médecine et santé</option>
           </select>
+
+          <?php
+          if (isset($_SESSION['errors']['faculte'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['faculte']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['faculte']); ?>
+
+
         </div>
         <div class="sm:col-span-3">
           <label class="label" for="filiere">Filière *</label>
@@ -278,6 +432,13 @@ include 'includes/sub-nav-inscription.php'
             <option value="6">Anglais</option>
             <option value="7">Sciences infirmières</option>
           </select>
+
+          <?php
+          if (isset($_SESSION['errors']['filiere'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['filiere']['filiere']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['filiere']); ?>
+
         </div>
         <div class="sm:col-span-2">
           <label class="label" for="niveau">Niveau d’entrée *</label>
@@ -288,6 +449,15 @@ include 'includes/sub-nav-inscription.php'
             <option value="M1">Master 1</option>
             <option value="M2">Master 2</option>
           </select>
+
+
+          <?php
+          if (isset($_SESSION['errors']['niveau'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['niveau']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['niveau']); ?>
+
+
         </div>
         <div class="sm:col-span-2">
           <label class="label" for="annee_academique">Année académique *</label>
@@ -299,6 +469,14 @@ include 'includes/sub-nav-inscription.php'
             <option value="2026-2027">2026-2027</option>
             <option value="2027-2028">2027-2028</option>
           </select>
+
+          <?php
+          if (isset($_SESSION['errors']['annee_academique'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['annee_academique']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['annee_academique']); ?>
+
+
         </div>
         <!-- <fieldset class="sm:col-span-2">
               <legend class="label">Régime *</legend>
