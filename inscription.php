@@ -4,9 +4,7 @@ include 'includes/head.php';
 include 'includes/navbar.php';
 include 'includes/sub-nav-inscription.php';
 
-// echo '<pre>';
-// var_dump($_SESSION['errors'] ?? []);
-// echo '</pre>';
+
 ?>
 
 <main class="mx-auto max-w-4xl px-4 py-8">
@@ -30,9 +28,9 @@ include 'includes/sub-nav-inscription.php';
           <label class="label" for="civilite">Civilité *</label>
           <select id="civilite" name="civilite" class="champ">
             <option value="">Choisir…</option>
-            <option value="M">Monsieur</option>
-            <option value="F">Madame</option>
-            <option value="A">Autre</option>
+            <option value="1">Monsieur</option>
+            <option value="2">Madame</option>
+            <option value="3">Autre</option>
           </select>
           <?php
           if (isset($_SESSION['errors']['civilite'])) : ?>
@@ -135,9 +133,9 @@ include 'includes/sub-nav-inscription.php';
             id="situation_familiale"
             name="situation_familiale"
             class="champ">
-            <option value="celibataire">Célibataire</option>
-            <option value="marie">Marié(e)</option>
-            <option value="autre">Autre</option>
+            <option value="1">Célibataire</option>
+            <option value="2">Marié(e)</option>
+            <option value="3">Autre</option>
           </select>
 
           <?php
@@ -300,12 +298,12 @@ include 'includes/sub-nav-inscription.php';
           <label class="label" for="type_bac">Type de baccalauréat *</label>
           <select id="type_bac" name="type_bac" class="champ" required>
             <option value="">Choisir…</option>
-            <option value="A">Série A (littéraire)</option>
-            <option value="C">Série C (mathématiques)</option>
-            <option value="D">Série D (sciences)</option>
-            <option value="G">Série G (gestion)</option>
-            <option value="technologique">Technologique</option>
-            <option value="autre">Autre</option>
+            <option value="1">Série A (littéraire)</option>
+            <option value="2">Série C (mathématiques)</option>
+            <option value="3">Série D (sciences)</option>
+            <option value="4">Série G (gestion)</option>
+            <option value="5">Technologique</option>
+            <option value="6">Autre</option>
           </select>
 
           <?php
@@ -375,11 +373,11 @@ include 'includes/sub-nav-inscription.php';
         <div class="sm:col-span-6">
           <label class="label" for="mention">Mention</label>
           <select id="mention" name="mention" class="champ">
-            <option value="aucune">Aucune</option>
-            <option value="passable">Passable</option>
-            <option value="assez_bien">Assez bien</option>
-            <option value="bien">Bien</option>
-            <option value="tres_bien">Très bien</option>
+            <option value="">Choisir</option>
+            <option value="1">Passable</option>
+            <option value="2">Assez bien</option>
+            <option value="3">Bien</option>
+            <option value="4">Très bien</option>
           </select>
 
           <?php
@@ -435,7 +433,7 @@ include 'includes/sub-nav-inscription.php';
 
           <?php
           if (isset($_SESSION['errors']['filiere'])) : ?>
-            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['filiere']['filiere']); ?></p>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['filiere']); ?></p>
           <?php endif;
           unset($_SESSION['errors']['filiere']); ?>
 
@@ -443,11 +441,11 @@ include 'includes/sub-nav-inscription.php';
         <div class="sm:col-span-2">
           <label class="label" for="niveau">Niveau d’entrée *</label>
           <select id="niveau" name="niveau" class="champ" required>
-            <option value="L1">Licence 1</option>
-            <option value="L2">Licence 2</option>
-            <option value="L3">Licence 3</option>
-            <option value="M1">Master 1</option>
-            <option value="M2">Master 2</option>
+            <option value="1">Licence 1</option>
+            <option value="2">Licence 2</option>
+            <option value="3">Licence 3</option>
+            <option value="4">Master 1</option>
+            <option value="5">Master 2</option>
           </select>
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : jeu. 12 nov. 2026 à 14:48
+-- Généré le : mer. 25 nov. 2026 à 02:41
 -- Version du serveur : 11.8.6-MariaDB-0+deb13u1 from Debian
 -- Version de PHP : 8.4.27
 
@@ -32,6 +32,18 @@ CREATE TABLE `baccalaureat` (
   `libelle_baccalaureat` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `baccalaureat`
+--
+
+INSERT INTO `baccalaureat` (`id_baccalaureat`, `libelle_baccalaureat`) VALUES
+(1, 'Série A (littéraire)'),
+(2, 'Série C (mathématiques)'),
+(3, 'Série D (sciences)'),
+(4, 'Série G (gestion)'),
+(5, 'Technologique'),
+(6, 'Autre');
+
 -- --------------------------------------------------------
 
 --
@@ -42,6 +54,15 @@ CREATE TABLE `civilite` (
   `id_civilite` int(11) NOT NULL,
   `libelle_civilite` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `civilite`
+--
+
+INSERT INTO `civilite` (`id_civilite`, `libelle_civilite`) VALUES
+(1, 'Monsieur'),
+(2, 'Madame'),
+(3, 'Autre');
 
 -- --------------------------------------------------------
 
@@ -80,6 +101,17 @@ CREATE TABLE `faculte` (
   `libelle_faculte` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `faculte`
+--
+
+INSERT INTO `faculte` (`id_faculte`, `libelle_faculte`) VALUES
+(1, 'Sciences et technologies'),
+(2, 'Droit et sciences politiques'),
+(3, 'Économie et gestion'),
+(4, 'Lettres et sciences humaines'),
+(5, 'Médecine et santé');
+
 -- --------------------------------------------------------
 
 --
@@ -92,6 +124,19 @@ CREATE TABLE `filiere` (
   `id_faculte` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `filiere`
+--
+
+INSERT INTO `filiere` (`id_filiere`, `libelle_filiere`, `id_faculte`) VALUES
+(1, 'Informatique', 1),
+(2, 'Mathématiques', 1),
+(3, 'Physique-Chimie', 1),
+(4, 'Droit privé', 2),
+(5, 'Gestion des entreprises', 3),
+(6, 'Anglais', 4),
+(7, 'Sciences infirmières', 5);
+
 -- --------------------------------------------------------
 
 --
@@ -102,6 +147,16 @@ CREATE TABLE `mention` (
   `id_mention` int(11) NOT NULL,
   `libelle_mention` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `mention`
+--
+
+INSERT INTO `mention` (`id_mention`, `libelle_mention`) VALUES
+(1, 'Passable'),
+(2, 'Assez bien'),
+(3, 'Bien'),
+(4, 'Très bien');
 
 -- --------------------------------------------------------
 
@@ -114,6 +169,17 @@ CREATE TABLE `niveau_entree` (
   `libelle_niveau_entree` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `niveau_entree`
+--
+
+INSERT INTO `niveau_entree` (`id_niveau_entree`, `libelle_niveau_entree`) VALUES
+(1, 'Licence 1'),
+(2, 'Licence 2'),
+(3, 'Licence 3'),
+(4, 'Master 1'),
+(5, 'Master 2');
+
 -- --------------------------------------------------------
 
 --
@@ -122,9 +188,9 @@ CREATE TABLE `niveau_entree` (
 
 CREATE TABLE `parcours_baccalaureat` (
   `id_parcours_baccalaureat` int(11) NOT NULL,
-  `derniere_ecole_parcours_scolaire` varchar(150) NOT NULL,
-  `annee_bac` year(4) NOT NULL,
-  `moyenne_bac_parcours_scolaire` decimal(4,2) NOT NULL,
+  `derniere_ecole_parcours_baccalaureat` varchar(150) NOT NULL,
+  `annee_bac_parcours_baccalaureat` year(4) NOT NULL,
+  `moyenne_bac_parcours_baccalaureat` decimal(4,2) NOT NULL,
   `releve_bac_parcours_baccalaureat` varchar(255) DEFAULT NULL,
   `id_baccalaureat` int(11) NOT NULL,
   `id_mention` int(11) NOT NULL,
@@ -157,8 +223,7 @@ CREATE TABLE `parcours_universitaire` (
 
 CREATE TABLE `pays` (
   `id_pays` int(11) NOT NULL,
-  `nom_pays` varchar(100) NOT NULL,
-  `code_iso_pays` varchar(10) NOT NULL
+  `nom_pays` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -185,6 +250,15 @@ CREATE TABLE `situation` (
   `id_situation` int(11) NOT NULL,
   `libelle_situation` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `situation`
+--
+
+INSERT INTO `situation` (`id_situation`, `libelle_situation`) VALUES
+(1, 'Célibataire'),
+(2, 'Marié(e)'),
+(3, 'Autre');
 
 -- --------------------------------------------------------
 
@@ -302,13 +376,13 @@ ALTER TABLE `ville`
 -- AUTO_INCREMENT pour la table `baccalaureat`
 --
 ALTER TABLE `baccalaureat`
-  MODIFY `id_baccalaureat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_baccalaureat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `civilite`
 --
 ALTER TABLE `civilite`
-  MODIFY `id_civilite` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_civilite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `etudiant`
@@ -320,25 +394,25 @@ ALTER TABLE `etudiant`
 -- AUTO_INCREMENT pour la table `faculte`
 --
 ALTER TABLE `faculte`
-  MODIFY `id_faculte` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_faculte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `filiere`
 --
 ALTER TABLE `filiere`
-  MODIFY `id_filiere` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_filiere` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `mention`
 --
 ALTER TABLE `mention`
-  MODIFY `id_mention` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_mention` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `niveau_entree`
 --
 ALTER TABLE `niveau_entree`
-  MODIFY `id_niveau_entree` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_niveau_entree` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `parcours_baccalaureat`
@@ -368,7 +442,7 @@ ALTER TABLE `responsable`
 -- AUTO_INCREMENT pour la table `situation`
 --
 ALTER TABLE `situation`
-  MODIFY `id_situation` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_situation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `ville`
