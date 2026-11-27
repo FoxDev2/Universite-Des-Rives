@@ -83,3 +83,71 @@ function validate_data($data)
     return $errors;
 }
 
+
+function validate_files($files)
+{
+    $files_errors = [];
+
+    $required_fields = [
+        'photo' => 'Photo d\'identité',
+        'releve_bac' => 'Relevé du Bac',
+        'piece_scan' => 'Pièce d\'identité',
+        'acte_naissance' => 'Acte de naissance'
+    ];
+
+    $max_size = 2 * 1024 * 1024;
+    $allowed_extensions = [
+        'pdf',
+        'png',
+        'jpg',
+        'jpeg'
+    ];
+
+    $pdf_only = [
+        'releve_bac',
+        'piece_scan'
+    ];
+
+    $pdf_or_picture = [
+        'photo',
+        'acte_naissance'
+    ];
+
+    foreach ($required_fields as $field => $label) {
+        // Vérifier d'abord si le fichier est défini
+        if (!isset($files[$field]) || !is_array($files[$field])) {
+            $files_errors[$field] = "$label est requis(e).";
+            continue;
+        }
+
+        $file = $files[$field];
+        $upload_error = $file['error'] ?? UPLOAD_ERR_NO_FILE;
+        // Insister sur l'absence de fichier
+        if ($upload_error === UPLOAD_ERR_NO_FILE) {
+            $files_errors[$field] = "$label est requis(e).";
+            continue;
+        }
+        // S'il ne s'agit pas d'un champ vide, alors échec
+        if ($upload_error !== UPLOAD_ERR_OK) {
+            $files_errors[$field] = "Le téléversement de $label a échoué.";
+            continue;
+        }
+        // Vérifier la taille des fichiers
+        if (($file['size'] ?? 0) > $max_size) {
+            $files_errors[$field] = "Taille de $label trop élevée (2Mo maximum).";
+            continue;
+        }
+        // Seulement si le chargement est réussi, vérifier l'extension
+        $ext = strtolower(pathinfo($file['name'] ?? '', PATHINFO_EXTENSION));
+        if (in_array($field, $pdf_only, true) && $ext !== 'pdf') {
+            $files_errors[$field] = "Format de fichier incorrect, veuillez charger un PDF.";
+            continue;
+        }
+
+        if (in_array($field, $pdf_or_picture, true) && !in_array($ext, $allowed_extensions, true)) {
+            $files_errors[$field] = "Format de fichier incorrect.";
+        }
+    }
+
+    return $files_errors;
+}

@@ -592,7 +592,7 @@ include 'includes/sub-nav-inscription.php';
     <section class="bloc">
       <h2>Pièces justificatives</h2>
       <p class="aide">
-        Formats acceptés : PDF, JPG ou PNG, 2 Mo maximum par fichier.
+        Formats acceptés : PDF, JPG, JPEG ou PNG, 2 Mo maximum par fichier.
       </p>
       <div class="grid gap-4 sm:grid-cols-2">
         <div>
@@ -604,6 +604,14 @@ include 'includes/sub-nav-inscription.php';
             accept="image/jpeg,image/png"
             required
             class="block w-full text-sm file:mr-3 file:rounded-md file:border-0 file:bg-accent file:px-3 file:py-2 file:text-white hover:file:bg-accent-dark" />
+
+          <?php
+          if (isset($_SESSION['errors']['photo'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['photo']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['photo']); ?>
+
+
         </div>
         <div>
           <label class="label" for="releve_bac">Relevé de notes du bac *</label>
@@ -614,6 +622,14 @@ include 'includes/sub-nav-inscription.php';
             accept=".pdf,image/jpeg,image/png"
             required
             class="block w-full text-sm file:mr-3 file:rounded-md file:border-0 file:bg-accent file:px-3 file:py-2 file:text-white hover:file:bg-accent-dark" />
+
+          <?php
+          if (isset($_SESSION['errors']['releve_bac'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['releve_bac']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['releve_bac']); ?>
+
+
         </div>
         <div>
           <label class="label" for="piece_scan">Pièce d’identité (scan) *</label>
@@ -624,6 +640,14 @@ include 'includes/sub-nav-inscription.php';
             accept=".pdf,image/jpeg,image/png"
             required
             class="block w-full text-sm file:mr-3 file:rounded-md file:border-0 file:bg-accent file:px-3 file:py-2 file:text-white hover:file:bg-accent-dark" />
+
+          <?php
+          if (isset($_SESSION['errors']['piece_scan'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['piece_scan']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['piece_scan']); ?>
+
+
         </div>
         <div>
           <label class="label" for="acte_naissance">Acte de naissance</label>
@@ -633,6 +657,14 @@ include 'includes/sub-nav-inscription.php';
             type="file"
             accept=".pdf,image/jpeg,image/png"
             class="block w-full text-sm file:mr-3 file:rounded-md file:border-0 file:bg-accent file:px-3 file:py-2 file:text-white hover:file:bg-accent-dark" />
+
+          <?php
+          if (isset($_SESSION['errors']['acte_naissance'])) : ?>
+            <p class="text-red-800 my-2"><?php echo htmlspecialchars($_SESSION['errors']['acte_naissance']); ?></p>
+          <?php endif;
+          unset($_SESSION['errors']['acte_naissance']); ?>
+
+
         </div>
       </div>
     </section>
